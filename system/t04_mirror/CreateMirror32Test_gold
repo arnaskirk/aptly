@@ -1,0 +1,15 @@
+Downloading http://mirror.yandex.ru/debian/dists/wheezy/InRelease...
+Downloading http://mirror.yandex.ru/debian/dists/wheezy/Release...
+Downloading http://mirror.yandex.ru/debian/dists/wheezy/Release.gpg...
+gpgv: Signature made Sat Jun 17 11:57:48 2017 MSK
+gpgv:                using RSA key 8B48AD6246925553
+gpgv: Good signature from "Debian Archive Automatic Signing Key (7.0/wheezy) <ftpmaster@debian.org>"
+gpgv: Signature made Sat Jun 17 11:57:48 2017 MSK
+gpgv:                using RSA key 7638D0442B90D010
+gpgv: Good signature from "Debian Archive Automatic Signing Key (8/jessie) <ftpmaster@debian.org>"
+gpgv: Signature made Sat Jun 17 12:15:12 2017 MSK
+gpgv:                using RSA key 6FB2A1C265FFB764
+gpgv: Good signature from "Wheezy Stable Release Key <debian-release@lists.debian.org>"
+
+Mirror [mirror11]: http://mirror.yandex.ru/debian/ wheezy successfully added.
+You can run 'aptly mirror update mirror11' to download repository contents.

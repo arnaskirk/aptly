@@ -82,8 +82,21 @@ func (s *SignerSuite) TestSignDetachedNoPassphrase(c *C) {
 	s.testSignDetached(c)
 }
 
+func (s *SignerSuite) TestSignDetachedNoPassphraseDefaultKey(c *C) {
+	s.signer.SetKeyRing(s.keyringNoPassphrase[0], s.keyringNoPassphrase[1])
+
+	s.testSignDetached(c)
+}
+
 func (s *SignerSuite) TestSignDetachedPassphrase(c *C) {
 	s.signer.SetKey(string(s.passphraseKey))
+	s.signer.SetKeyRing(s.keyringPassphrase[0], s.keyringPassphrase[1])
+	s.signer.SetPassphrase("verysecret", "")
+
+	s.testSignDetached(c)
+}
+
+func (s *SignerSuite) TestSignDetachedPassphraseDefaultKey(c *C) {
 	s.signer.SetKeyRing(s.keyringPassphrase[0], s.keyringPassphrase[1])
 	s.signer.SetPassphrase("verysecret", "")
 
@@ -129,8 +142,21 @@ func (s *SignerSuite) TestClearSignNoPassphrase(c *C) {
 	s.testClearSign(c, s.noPassphraseKey)
 }
 
+func (s *SignerSuite) TestClearSignNoPassphraseDefaultKey(c *C) {
+	s.signer.SetKeyRing(s.keyringNoPassphrase[0], s.keyringNoPassphrase[1])
+
+	s.testClearSign(c, s.noPassphraseKey)
+}
+
 func (s *SignerSuite) TestClearSignPassphrase(c *C) {
 	s.signer.SetKey(string(s.passphraseKey))
+	s.signer.SetKeyRing(s.keyringPassphrase[0], s.keyringPassphrase[1])
+	s.signer.SetPassphrase("verysecret", "")
+
+	s.testClearSign(c, s.passphraseKey)
+}
+
+func (s *SignerSuite) TestClearSignPassphraseDefaultKey(c *C) {
 	s.signer.SetKeyRing(s.keyringPassphrase[0], s.keyringPassphrase[1])
 	s.signer.SetPassphrase("verysecret", "")
 
