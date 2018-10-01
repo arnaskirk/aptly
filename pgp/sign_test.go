@@ -21,6 +21,8 @@ type SignerSuite struct {
 
 	passwordFile string
 
+	skipDefaultKey bool
+
 	keyringNoPassphrase [2]string
 	keyringPassphrase   [2]string
 
@@ -83,6 +85,10 @@ func (s *SignerSuite) TestSignDetachedNoPassphrase(c *C) {
 }
 
 func (s *SignerSuite) TestSignDetachedNoPassphraseDefaultKey(c *C) {
+	if s.skipDefaultKey {
+		c.Skip("test for default key skipped")
+	}
+
 	s.signer.SetKeyRing(s.keyringNoPassphrase[0], s.keyringNoPassphrase[1])
 
 	s.testSignDetached(c)
@@ -97,6 +103,10 @@ func (s *SignerSuite) TestSignDetachedPassphrase(c *C) {
 }
 
 func (s *SignerSuite) TestSignDetachedPassphraseDefaultKey(c *C) {
+	if s.skipDefaultKey {
+		c.Skip("test for default key skipped")
+	}
+
 	s.signer.SetKeyRing(s.keyringPassphrase[0], s.keyringPassphrase[1])
 	s.signer.SetPassphrase("verysecret", "")
 
@@ -143,6 +153,10 @@ func (s *SignerSuite) TestClearSignNoPassphrase(c *C) {
 }
 
 func (s *SignerSuite) TestClearSignNoPassphraseDefaultKey(c *C) {
+	if s.skipDefaultKey {
+		c.Skip("test for default key skipped")
+	}
+
 	s.signer.SetKeyRing(s.keyringNoPassphrase[0], s.keyringNoPassphrase[1])
 
 	s.testClearSign(c, s.noPassphraseKey)
@@ -157,6 +171,10 @@ func (s *SignerSuite) TestClearSignPassphrase(c *C) {
 }
 
 func (s *SignerSuite) TestClearSignPassphraseDefaultKey(c *C) {
+	if s.skipDefaultKey {
+		c.Skip("test for default key skipped")
+	}
+
 	s.signer.SetKeyRing(s.keyringPassphrase[0], s.keyringPassphrase[1])
 	s.signer.SetPassphrase("verysecret", "")
 

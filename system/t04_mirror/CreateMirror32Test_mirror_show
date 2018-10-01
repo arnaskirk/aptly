@@ -1,4 +1,4 @@
-Name: mirror11
+Name: mirror32
 Archive Root URL: http://mirror.yandex.ru/debian/
 Distribution: wheezy
 Components: main, contrib, non-free

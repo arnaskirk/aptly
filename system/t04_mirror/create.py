@@ -404,7 +404,7 @@ class CreateMirror32Test(BaseTest):
     """
     create mirror: repo with Release + Release.gpg verification (gpg2)
     """
-    runCmd = "aptly mirror create --keyring=aptlytest.gpg mirror11 http://mirror.yandex.ru/debian/ wheezy"
+    runCmd = "aptly mirror create --keyring=aptlytest.gpg mirror32 http://mirror.yandex.ru/debian/ wheezy"
     fixtureGpg = True
     requiresGPG2 = True
 
@@ -413,4 +413,4 @@ class CreateMirror32Test(BaseTest):
 
     def check(self):
         self.check_output()
-        self.check_cmd_output("aptly mirror show mirror11", "mirror_show")
+        self.check_cmd_output("aptly mirror show mirror32", "mirror_show")
