@@ -181,6 +181,8 @@ class BaseTest(object):
                                                      self.fixtureWebServer))
 
         if self.fixtureGpg:
+            if self.requiresGPG2:
+                self.run_cmd([self.gpgFinder.gpg2, "--import", "${files}/aptly.sec"], expected_code=None)
             self.run_cmd([self.gpgFinder.gpg, "--no-default-keyring", "--trust-model", "always", "--batch", "--keyring", "aptlytest.gpg", "--import"] +
                          [os.path.join(os.path.dirname(inspect.getsourcefile(BaseTest)), "files", key) for key in self.fixtureGpgKeys])
 
@@ -215,8 +217,9 @@ class BaseTest(object):
         try:
             proc = self._start_process(command, stdout=subprocess.PIPE)
             output, _ = proc.communicate()
-            if proc.returncode != expected_code:
-                raise Exception("exit code %d != %d (output: %s)" % (proc.returncode, expected_code, output))
+            if expected_code is not None:
+                if proc.returncode != expected_code:
+                    raise Exception("exit code %d != %d (output: %s)" % (proc.returncode, expected_code, output))
             return output
         except Exception, e:
             raise Exception("Running command %s failed: %s" % (command, str(e)))

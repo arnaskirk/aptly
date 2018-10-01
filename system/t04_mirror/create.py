@@ -409,7 +409,9 @@ class CreateMirror32Test(BaseTest):
     requiresGPG2 = True
 
     def outputMatchPrepare(_, s):
-        return re.sub(r'Signature made .* using', '', s)
+        return \
+            re.sub(r'([A-F0-9]{8})[A-F0-9]{8}', r'\1',
+                   re.sub(r'^Signature made .* using', '', s, flags=re.MULTILINE))
 
     def check(self):
         self.check_output()
